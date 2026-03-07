@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhanu · human + AI collaborator</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    background-color: #f4f7fb;
+    color: #1e2b37;
+    line-height: 1.5;
+}
+
+.top-bar {
+    background-color: #0b2a3b;
+    padding: 12px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 4px solid #6bc5d2;
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    color: #d4f0f5;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.nav-links a {
+    color: #efefef;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 5px 8px;
+    border-radius: 30px;
+    transition: background 0.2s;
+}
+
+.nav-links a:hover {
+    background-color: #6bc5d2;
+    color: #0b2a3b;
+}
+
+.hero-section {
+    max-width: 1100px;
+    margin: 30px auto 20px;
+    background-color: #d9e9f2;
+    border-radius: 40px 12px 40px 12px;
+    padding: 40px 30px;
+    border: 2px solid #bbd1dd;
+    box-shadow: 10px 10px 0 #a1b9c9;
+}
+
+.hero-flex {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hero-text {
+    flex: 1 1 280px;
+}
+
+.hero-text h1 {
+    font-size: 44px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.name-highlight {
+    background-color: #6bc5d2;
+    padding: 2px 12px;
+    border-radius: 40px;
+    display: inline-block;
+    color: #0b2a3b;
+}
+
+.tagline {
+    font-size: 18px;
+    color: #115277;
+    font-weight: 600;
+    margin: 8px 0 15px;
+}
+
+.intro-box {
+    background-color: white;
+    padding: 20px 22px;
+    border-radius: 30px;
+    border-left: 6px solid #6bc5d2;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    margin: 15px 0;
+}
+
+.ai-statement {
+    background-color: #f0f7fa;
+    padding: 14px 16px;
+    border-radius: 20px;
+    margin-top: 15px;
+    border: 2px dashed #3b9aa8;
+    font-size: 16px;
+}
+
+.info-badge {
+    background-color: #114b5f;
+    color: white;
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.hero-pic {
+    text-align: center;
+}
+
+img.profile-img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50% 40% 50% 40%;
+    border: 5px solid #6bc5d2;
+    display: block;
+    margin: 0 auto 8px auto;
+    box-shadow: 8px 8px 0 #6f9faa;
+}
+
+.pic-caption {
+    font-weight: 500;
+    color: #2b4b5e;
+    background-color: white;
+    padding: 4px 15px;
+    border-radius: 50px;
+    display: inline-block;
+}
+
+.open-to-work {
+    background-color: #d4f5e2;
+    color: #1a6b3c;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 5px 16px;
+    border-radius: 50px;
+    border: 2px solid #4caf7d;
+    display: inline-block;
+    margin-top: 10px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(76,175,125,0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(76,175,125,0); }
+}
+
+.social-btns {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.15s;
+    border: 2px solid;
+}
+
+.github-btn {
+    background-color: #1a1a2e;
+    color: white;
+    border-color: #444;
+    box-shadow: 3px 3px 0 #444;
+}
+
+.github-btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #444;
+}
+
+.linkedin-btn {
+    background-color: #0077b5;
+    color: white;
+    border-color: #005885;
+    box-shadow: 3px 3px 0 #005885;
+}
+
+.linkedin-btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #005885;
+}
+
+.location-tag {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #3b6070;
+    font-weight: 500;
+    background-color: white;
+    padding: 4px 14px;
+    border-radius: 50px;
+    display: inline-block;
+    border: 1px solid #b0cdd8;
+}
+
+.section {
+    max-width: 1100px;
+    margin: 40px auto;
+    background-color: white;
+    border-radius: 28px;
+    padding: 35px 30px;
+    border: 1px solid #d3e0e9;
+    box-shadow: 0 8px 0 #b7c9d6;
+}
+
+.alt-bg {
+    background-color: #eef5f9;
+}
+
+h2 {
+    font-size: 34px;
+    margin-bottom: 25px;
+    border-left: 10px solid #6bc5d2;
+    padding-left: 20px;
+    font-weight: 650;
+}
+
+.skill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 25px 0 15px;
+}
+
+.skill-chip {
+    background-color: #2f5570;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 60px;
+    font-size: 18px;
+    font-weight: 500;
+    border: 2px solid #143240;
+    box-shadow: 4px 4px 0 #102b38;
+}
+
+.section-note {
+    color: #396684;
+    font-style: italic;
+    margin-top: 20px;
+    border-top: 2px dotted #aac3d4;
+    padding-top: 15px;
+}
+
+.tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.tool-item {
+    background-color: #e8f0f2;
+    padding: 12px 25px;
+    border-radius: 100px;
+    font-size: 17px;
+    font-weight: 600;
+    border: 2px solid #3f93a3;
+    box-shadow: 5px 5px 0 #30707d;
+    transition: 0.1s;
+}
+
+.tool-item:hover {
+    transform: translate(3px,3px);
+    box-shadow: 4px 4px 0 #235a66;
+}
+
+.tools-note {
+    margin-top: 25px;
+    background-color: #f4fcfd;
+    padding: 10px 18px;
+    border-radius: 40px;
+    border: 2px solid #6bc5d2;
+    font-weight: 500;
+}
+
+.project-dark {
+    background-color: #173542;
+    color: #f0f7fa;
+}
+
+.light-heading {
+    color: white;
+    border-left-color: #6bc5d2;
+}
+
+.project-sub {
+    color: #cbdbe6;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.project-card-wide {
+    background-color: #fcf9f3;
+    color: #1f2c33;
+    border-radius: 24px;
+    margin-bottom: 30px;
+    padding: 20px 20px;
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    border: 3px solid #b3a17e;
+    box-shadow: 8px 8px 0 #6c7b89;
+}
+
+.project-img-area {
+    flex: 0 0 140px;
+    text-align: center;
+}
+
+.project-img {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px 10px 20px 10px;
+    border: 3px solid #409eaf;
+    box-shadow: 6px 6px 0 #6c7b89;
+    display: block;
+    margin: 0 auto;
+}
+
+.demo-pic {
+    font-size: 50px;
+    background-color: #b3e4ed;
+    border-radius: 30px 10px 30px 10px;
+    padding: 18px 12px;
+    border: 3px solid #409eaf;
+    box-shadow: inset 0 0 0 2px white;
+}
+
+.demo-label {
+    background-color: #315d6e;
+    color: white;
+    padding: 3px 0;
+    border-radius: 30px;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.project-desc {
+    flex: 2 1 260px;
+}
+
+.project-desc h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: #17495c;
+}
+
+.ai-note {
+    background-color: #f2f9fc;
+    border-left: 5px solid #6bc5d2;
+    padding: 10px 15px;
+    border-radius: 12px;
+    margin: 12px 0;
+    font-size: 15px;
+    font-style: italic;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px 0 5px;
+}
+
+.tech-tags span {
+    background-color: #e5eef5;
+    padding: 5px 15px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid #286b85;
+}
+
+.more-link {
+    text-align: right;
+    font-size: 18px;
+    color: #b3e4ed;
+    font-weight: 500;
+    margin-top: 15px;
+    border-top: 2px dashed #688b9b;
+    padding-top: 15px;
+}
+
+.more-link a {
+    color: #6bc5d2;
+}
+
+.contact-bg {
+    background-color: #ecf5f0;
+}
+
+.about-contact-flex {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 25px 0;
+}
+
+.about-card, .contact-card {
+    background-color: white;
+    flex: 1 1 250px;
+    padding: 25px;
+    border-radius: 30px;
+    border: 2px solid #9ecfd9;
+    box-shadow: 7px 7px 0 #80b8c4;
+}
+
+.about-card h3, .contact-card h3 {
+    font-size: 26px;
+    color: #11475a;
+    border-bottom: 3px solid #6bc5d2;
+    padding-bottom: 6px;
+    margin-bottom: 18px;
+}
+
+.about-card p, .contact-card p {
+    margin: 12px 0;
+    font-size: 17px;
+}
+
+.ai-philosophy {
+    background-color: #e0f2f5;
+    padding: 15px;
+    border-radius: 18px;
+    margin-top: 15px;
+    border: 2px solid #3b9aa8;
+}
+
+.ai-philosophy h4 {
+    font-size: 18px;
+    color: #084d5c;
+    margin-bottom: 6px;
+}
+
+.contact-note {
+    background-color: #fef2dd;
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-style: italic;
+}
+
+.contact-email-btn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.fake-button {
+    background-color: #1a5f73;
+    color: white;
+    text-decoration: none;
+    padding: 12px 35px;
+    border-radius: 60px;
+    font-size: 18px;
+    font-weight: 600;
+    display: inline-block;
+    border: 3px solid #6bc5d2;
+    box-shadow: 6px 6px 0 #0b3645;
+}
+
+.fake-button:hover {
+    background-color: #6bc5d2;
+    color: #0b2a3b;
+    border-color: #0b2a3b;
+    box-shadow: 2px 2px 0 #2f4d5b;
+}
+
+.footer {
+    background-color: #10262e;
+    color: #bcd3dd;
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    font-size: 16px;
+    border-top: 6px solid #6bc5d2;
+}
+
+.small-emoji {
+    font-size: 20px;
+    margin-top: 8px;
+    opacity: 0.9;
+}
+
+@media (max-width: 700px) {
+    .hero-flex {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .project-card-wide {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .tech-tags {
+        justify-content: center;
+    }
+    .nav-links a {
+        margin: 0 8px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="nav-container">
+            <div class="logo">🧑‍💻 Junior Software Developer</div>
+            <div class="nav-links">
+                <a href="#home">home</a>
+                <a href="#skills">skills</a>
+                <a href="#tools">tools</a>
+                <a href="#projects">projects</a>
+                <a href="#contact">contact</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="home" class="hero-section">
+        <div class="hero-flex">
+            <div class="hero-text">
+                <h1>hi, i'm <span class="name-highlight">Bhanu</span></h1>
+                <p class="tagline">beginner developer · spring + react · AI‑enhanced debugging</p>
+                <div class="intro-box">
+                    <p>I know <strong>Java, SQL, HTML, CSS, JavaScript</strong>. I build things with Spring Boot and React.</p>
+                    <p class="ai-statement">🤖 <strong>I use AI (Copilot, ChatGPT) for debugging and small fixes</strong> — just like many devs today. But I <strong>understand every line</strong> I write. AI helps me learn faster, not think for me.</p>
+                </div>
+                <div class="info-badge">✨ human · AI collaborator ✨</div>
+            </div>
+            <div class="hero-pic">
+                <img src="me.jpeg" alt="Bhanu" class="profile-img">
+                <p class="pic-caption">that's me</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="skills" class="section alt-bg">
+        <h2>🧰 my skills (i own them)</h2>
+        <div class="skill-grid">
+            <div class="skill-chip">Java (core)</div>
+            <div class="skill-chip">SQL (queries)</div>
+            <div class="skill-chip">HTML5</div>
+            <div class="skill-chip">CSS3</div>
+            <div class="skill-chip">JavaScript (basics)</div>
+            <div class="skill-chip">Spring Boot (beginner)</div>
+            <div class="skill-chip">React (learning)</div>
+            <div class="skill-chip">Git & GitHub</div>
+        </div>
+        <p class="section-note">⬆️ i learned these by building. AI helps me debug, but the logic is mine.</p>
+    </div>
+
+    <div id="tools" class="section">
+        <h2>🛠️ tools & AI assistants</h2>
+        <div class="tools-list">
+            <div class="tool-item">💻 VS Code</div>
+            <div class="tool-item">📦 Git</div>
+            <div class="tool-item">🐙 GitHub</div>
+            <div class="tool-item">🍃 Spring Framework</div>
+            <div class="tool-item">⚛️ React</div>
+            <div class="tool-item">🗄️ MySQL</div>
+            <div class="tool-item">🤖 GitHub Copilot</div>
+            <div class="tool-item">💬 ChatGPT (debug buddy)</div>
+            <div class="tool-item">🧪 Postman</div>
+            <div class="tool-item">📘 IntelliJ IDEA</div>
+        </div>
+        <p class="tools-note">⭐ AI tools = faster debugging, not a crutch. I review every suggestion.</p>
+    </div>
+
+    <div id="projects" class="section project-dark">
+        <h2 class="light-heading">📁 my projects + AI collaboration</h2>
+        <p class="project-sub">(each card shows what i built and how AI helped me learn)</p>
+
+        <div class="project-showcase">
+            <!-- Project 1: Bank Backend -->
+            <div class="project-card-wide">
+                <div class="project-img-area">
+                    <video src="bank backend output.mp4" class="project-img" autoplay muted loop playsinline></video>
+                    <div class="demo-label">backend demo</div>
+                </div>
+                <div class="project-desc">
+                    <h3>🏦 bank backend (Spring Boot)</h3>
+                    <p><strong>Built by me:</strong> REST API with accounts, transactions and balance logic. I wrote the controller, service and repository layers.</p>
+                    <p class="ai-note">🤖 Copilot helped me fix a null pointer and suggested better exception names. I understood every fix before accepting it.</p>
+                    <div class="tech-tags">
+                        <span>Spring Boot</span><span>REST API</span><span>Java</span><span>MySQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Bank Code Demo -->
+            <div class="project-card-wide">
+                <div class="project-img-area">
+                    <video src="bank-code(demo).mp4" class="project-img" autoplay muted loop playsinline></video>
+                    <div class="demo-label">code walkthrough</div>
+                </div>
+                <div class="project-desc">
+                    <h3>🍃 java OOP concepts</h3>
+                    <p><strong>Built by me:</strong> Classes and Objects, Encapsulation, Inheritance, Polymorphism. I wrote all the logic from scratch.</p>
+                    <p class="ai-note">🤖 Copilot suggested better variable names. I reviewed and approved each one — I understand why they're better.</p>
+                    <div class="tech-tags">
+                        <span>Encapsulation</span><span>Inheritance</span><span>Polymorphism</span><span>Java</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Calculator -->
+            <div class="project-card-wide">
+                <div class="project-img-area">
+                    <video src="cal demo.mp4" class="project-img" autoplay muted loop playsinline></video>
+                    <div class="demo-label">calculator demo</div>
+                </div>
+                <div class="project-desc">
+                    <h3>🧮 calculator (HTML + CSS)</h3>
+                    <p><strong>Built by me:</strong> Fully functional calculator built with pure HTML and CSS. I designed the layout and logic myself.</p>
+                    <p class="ai-note">🤖 ChatGPT explained one CSS grid concept. Then I wrote the layout myself from that understanding.</p>
+                    <div class="tech-tags">
+                        <span>HTML</span><span>CSS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: Full Portfolio -->
+            <div class="project-card-wide">
+                <div class="project-img-area">
+                    <video src="compelete backend working.mp4" class="project-img" autoplay muted loop playsinline></video>
+                    <div class="demo-label">portfolio demo</div>
+                </div>
+                <div class="project-desc">
+                    <h3>🌐 this portfolio</h3>
+                    <p><strong>Built by me:</strong> This very site — built with HTML & CSS only, no frameworks. Every section, style and layout is handcrafted.</p>
+                    <p class="ai-note">🤖 AI helped me brainstorm section ideas. All the code is 100% written and understood by me.</p>
+                    <div class="tech-tags">
+                        <span>HTML5</span><span>CSS3</span><span>Responsive</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="more-link">🔗 <a href="https://github.com/bhanu3009" target="_blank">github.com/bhanu3009</a> · every repo includes what AI helped with in commits</p>
+    </div>
+
+    <div id="contact" class="section contact-bg">
+        <h2>👤 about me & my AI approach</h2>
+        <div class="about-contact-flex">
+            <div class="about-card">
+                <h3>a bit about me</h3>
+                <p>I'm a passionate beginner who loves coding. I started with Java and SQL, then moved to web. I enjoy building small tools and learning new tech. When I'm not coding, I read tech blogs or play chess.</p>
+                <p>📍 based in Vizag, India</p>
+                <p>🧑‍💻 learning: Spring Boot & React hooks</p>
+                <div class="ai-philosophy">
+                    <h4>🤖 my AI rule:</h4>
+                    <p>I use Copilot & ChatGPT like a senior dev sitting next to me — they give hints, I write the final code. I never copy-paste without understanding.</p>
+                </div>
+            </div>
+            <div class="contact-card">
+                <h3>📫 contact info</h3>
+                <p>✉️ bhanuprakasht588@gmail.com</p>
+                <p>🐙 <a href="https://github.com/bhanu3009" target="_blank">github.com/bhanu3009</a></p>
+                <p>💼 <a href="https://www.linkedin.com/in/bhanu-prakash-thamiri-967ba0278/" target="_blank">linkedin/bhanu-prakash</a></p>
+                <p class="contact-note">(i reply to all messages 😊)</p>
+            </div>
+        </div>
+        <div class="contact-email-btn">
+            <a href="mailto:bhanuprakasht588@gmail.com" class="fake-button">📧 email me (AI‑free reply 😄)</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>built with HTML & CSS only · human + AI collaboration · © 2026</p>
+        <p class="small-emoji">✨ i know what every line does ✨</p>
+    </div>
+
+</body>
+</html>
